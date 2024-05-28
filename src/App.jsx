@@ -1,4 +1,3 @@
-// omdb_api="http://www.omdbapi.com/?i=tt3896198&apikey=d460d370"
 import React from "react"
 import { Routes,Route} from "react-router-dom"
 import Footer from "./components/Footer"

@@ -24,7 +24,7 @@ function Home() {
     };
 
     fetchMovies();
-    
+
   },[dispatch])
 
   return (

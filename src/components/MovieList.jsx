@@ -4,6 +4,7 @@ import { getAllMovies, getAllShows, getErrorstatus, getLoadingStatus } from '../
 import MovieCard from "./MovieCard";
 
 function MovieList() {
+  
   const movies = useSelector(getAllMovies);
   const shows = useSelector(getAllShows);
   const loading = useSelector(getLoadingStatus);

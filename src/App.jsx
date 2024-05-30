@@ -14,7 +14,7 @@ function App() {
         <div className="mx-10 my-0">
        <Routes>
         <Route path="/" exact Component={Home} />
-        <Route path="/movie/:omdbID" Component={MovieDetail} />
+        <Route path="/movie/:imdbID" Component={MovieDetail} />
         <Route path="*" Component={PageNotFound}/>
        </Routes>
        </div>

@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 export default function MovieCard({ data }) {
   return (
-    <div className='bg-secondary cursor-pointer'>
+    <div className='bg-secondary cursor-pointer transition-all duration-300 hover:scale-105'>
+      <Link to={`/movie/${data.imdbID}`}>
       <div className='cardinner'>
         <div className='h-[300px]'>
           <img src={data.Poster} alt={data.Title} className='w-full h-full' />
@@ -14,6 +17,7 @@ export default function MovieCard({ data }) {
           </div>
         </div>
       </div>
+      </Link>
     </div>
   );
 }

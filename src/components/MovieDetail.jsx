@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAsyncMovieorShowDetail, getErrorstatus, getLoadingStatus, getselectedMovie } from '../features/movies/MovieSlice'
+import { fetchAsyncMovieorShowDetail,getselectedMovie } from '../features/movies/MovieSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faFilm, faStar, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,8 +14,7 @@ export default function MovieDetail() {
 
   const dispatch=useDispatch()
   const movieDetails = useSelector(getselectedMovie);
-  const loading = useSelector(getLoadingStatus);
-  const error = useSelector(getErrorstatus);
+
    
 
   useEffect(()=>{
@@ -24,22 +23,21 @@ export default function MovieDetail() {
  
   return (
     <div className='flex justify-evenly py-10 text-fontPrimary font-normal'>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
+     
      <div className='left'>
       <div className='text-2xl text-fontPrimary'>{movieDetails.Title}</div>
       <div className='pl-1 mt-5 text-fontSecondary flex '>
          <span className='mr-5'>IMDB Rating 
-         <FontAwesomeIcon icon={faStar} className='ms-1'/> : {movieDetails.imdbRating}
+         <FontAwesomeIcon icon={faStar} className='ms-1 text-yellow-500'/> : {movieDetails.imdbRating}
          </span>
          <span className='mr-5'>IMDB Votes
-         <FontAwesomeIcon icon={faThumbsUp} className='ms-1'/> : {movieDetails.imdbVotes}
+         <FontAwesomeIcon icon={faThumbsUp} className='ms-1 text-blue-50'/> : {movieDetails.imdbVotes}
          </span>
          <span className='mr-5'> Runtime
-         <FontAwesomeIcon icon={faFilm} className='ms-1'/> : {movieDetails.Runtime}
+         <FontAwesomeIcon icon={faFilm} className='ms-1 text-gray-200'/> : {movieDetails.Runtime}
          </span>
          <span className='mr-5'>year 
-         <FontAwesomeIcon icon={faCalendar} className='ms-1'/> : {movieDetails.Year}
+         <FontAwesomeIcon icon={faCalendar} className='ms-1 text-orange-200'/> : {movieDetails.Year}
          </span>
       </div>
        <div className='mt-5 leading-normal'>
@@ -69,7 +67,7 @@ export default function MovieDetail() {
        </div>
      </div>
 
-     <div className='right section'>
+     <div className='ml-3 h-full w-full'>
          <img src={movieDetails.Poster} alt={movieDetails.Title}/>
      </div>
     </div>

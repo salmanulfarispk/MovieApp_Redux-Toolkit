@@ -15,8 +15,22 @@ export const fetchAsyncMovies=createAsyncThunk('movies/fetchAsyncMovies',async()
 })
 
 
+export const fetchAsyncShows=createAsyncThunk('movies/fetchAsyncShows',async()=>{
+    const seriestext="Lord";
+      try {
+          const response= await MovieApi.get(`?apikey=${APIkey}&s=${seriestext}&type=series`)
+            return response.data;
+
+          } catch (error) {
+            console.log("Error : ",error);
+            throw error;
+          }
+  })
+
+
 const initialState={
     movies: {},
+    shows: {},
     loading:false,
     error:null
 };
@@ -24,11 +38,7 @@ const initialState={
 const movieSlice=createSlice({
     name:"movies",
     initialState,
-    reducers:{
-        addMovies: (state,{ payload })=>{
-            state.movies = payload;
-        },
-    },
+    reducers:{},
     extraReducers: (builder) => {
         builder
          .addCase(fetchAsyncMovies.pending, (state)=>{
@@ -46,6 +56,22 @@ const movieSlice=createSlice({
             state.error = error.message;
            console.log("rejected ");
        })
+       .addCase(fetchAsyncShows.pending, (state)=>{
+        state.loading=true;
+        state.error = null;
+       console.log("pending");
+   })
+   .addCase(fetchAsyncShows.fulfilled , (state,{payload})=>{
+       state.loading=false,
+       state.shows = payload;
+       console.log("fetched succesfully");
+   })
+   .addCase(fetchAsyncShows.rejected ,(state)=>{
+       state.loading=false;
+       state.error = error.message;
+      console.log("rejected ");
+  })
+       
     }
 
 });
@@ -54,6 +80,7 @@ const movieSlice=createSlice({
 export const {addMovies}=movieSlice.actions;
 export default movieSlice.reducer;
 export const getAllMovies =(state)=> state.movies.movies;   //first movies is movieslicename and then movies is movies[]
+export const getAllShows =(state)=> state.movies.shows;   
 export const getLoadingStatus =(state)=> state.movies.loading;
 export const getErrorstatus =(state)=> state.movies.error;
 

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 export default function MovieCard({ data }) {
   return (
-    <div className='bg-secondary cursor-pointer transition-all duration-300 hover:scale-105'>
+    <div className='bg-secondary cursor-pointer h-full m-2 rounded-lg transition-all duration-300
+     hover:scale-105  min-h-[450px]'>
       <Link to={`/movie/${data.imdbID}`}>
       <div className='cardinner'>
         <div className='h-[300px]'>

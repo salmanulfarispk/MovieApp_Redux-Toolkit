@@ -2,6 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getAllMovies, getAllShows, getErrorstatus, getLoadingStatus } from '../features/movies/MovieSlice';
 import MovieCard from "./MovieCard";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick"
+import { settings } from '../common/settings';
 
 function MovieList() {
   
@@ -38,15 +42,25 @@ function MovieList() {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+
+
   return (
     <div className='moviewrapper'>
       <div className='my-5'>
         <h2 className='text-fontSecondary mb-[10px] font-normal'>Movies</h2>
-        <div className='grid sm:grid-cols-3 md:grid-cols-6 gap-2 min-w-[220px]'>{renderMovies}</div>
+        <div>
+          <Slider {...settings}>
+          {renderMovies}
+          </Slider>
+          </div>
       </div>
       <div className='my-5'>
         <h2 className='text-fontSecondary mb-[10px] font-normal'>Shows</h2>
-        <div className='grid sm:grid-cols-3 md:grid-cols-6 gap-2 min-w-[220px]'>{renderShows}</div>
+        <div>
+        <Slider {...settings}>
+          {renderShows}
+          </Slider>
+        </div>
       </div>
     </div>
   );

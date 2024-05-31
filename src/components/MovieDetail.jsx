@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchAsyncMovieorShowDetail,getselectedMovie, removeSelectedMovieorShow } from '../features/movies/MovieSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faFilm, faStar, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { SpinnerCircular } from 'spinners-react';
 
 
 
@@ -26,7 +27,8 @@ export default function MovieDetail() {
   return (
     <div className='flex justify-evenly py-10 text-fontPrimary font-normal'>
       {!movieDetails || Object.keys(movieDetails).length === 0 ? 
-           (<div>....Loading</div>  ) : (
+           (<div><SpinnerCircular size={43} thickness={119} speed={148} color="rgba(57, 138, 172, 1)" secondaryColor="rgba(57, 146, 172, 0.44)" />
+           </div>  ) : (
      <>
      <div className='left'>
       <div className='text-2xl text-fontPrimary'>{movieDetails.Title}</div>

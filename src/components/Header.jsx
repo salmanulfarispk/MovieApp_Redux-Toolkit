@@ -11,10 +11,12 @@ function Header() {
   const dispatch=useDispatch()
   const submitHandler=(e)=>{
     e.preventDefault();
-  dispatch(fetchAsyncMovies(term))
-  dispatch(fetchAsyncShows(term))
-  setTerm("")
-  }
+    if(term =="")return alert("please enter search term")
+      
+   dispatch(fetchAsyncMovies(term))
+   dispatch(fetchAsyncShows(term))
+   setTerm("")
+   }
   return (
     <div className='bg-secondary h-[72px] px-10  flex items-center justify-between'>
       <div className='text-fontPrimary text-3xl font-semibold'>

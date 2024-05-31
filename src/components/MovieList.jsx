@@ -7,11 +7,12 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick"
 import { settings } from '../common/settings';
 
+
+
 function MovieList() {
   
   const movies = useSelector(getAllMovies);
   const shows = useSelector(getAllShows);
-  const loading = useSelector(getLoadingStatus);
   const error = useSelector(getErrorstatus);
 
   let renderMovies = "";
@@ -39,7 +40,6 @@ function MovieList() {
       </div>
     );
 
-  if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
 

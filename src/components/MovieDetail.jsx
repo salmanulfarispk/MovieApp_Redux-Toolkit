@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAsyncMovieorShowDetail,getselectedMovie } from '../features/movies/MovieSlice'
+import { fetchAsyncMovieorShowDetail,getselectedMovie, removeSelectedMovieorShow } from '../features/movies/MovieSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faFilm, faStar, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -19,11 +19,16 @@ export default function MovieDetail() {
 
   useEffect(()=>{
      dispatch(fetchAsyncMovieorShowDetail(imdbID))
+     return ()=>{
+      dispatch(removeSelectedMovieorShow())   //clean up function
+     }
   },[dispatch,imdbID])
  
   return (
     <div className='flex justify-evenly py-10 text-fontPrimary font-normal'>
-     
+      {!movieDetails || Object.keys(movieDetails).length === 0 ? 
+           (<div>....Loading</div>  ) : (
+     <>
      <div className='left'>
       <div className='text-2xl text-fontPrimary'>{movieDetails.Title}</div>
       <div className='pl-1 mt-5 text-fontSecondary flex '>
@@ -67,9 +72,11 @@ export default function MovieDetail() {
        </div>
      </div>
 
-     <div className='ml-3 h-full w-full'>
+     <div className='flex items-center justify-center ml-5 h-full w-full'>
          <img src={movieDetails.Poster} alt={movieDetails.Title}/>
      </div>
+     </>
+        )}
     </div>
   )
 }

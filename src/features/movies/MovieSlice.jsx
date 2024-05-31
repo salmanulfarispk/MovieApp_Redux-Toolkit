@@ -51,7 +51,11 @@ const initialState={
 const movieSlice=createSlice({
     name:"movies",
     initialState,
-    reducers:{},
+    reducers:{
+        removeSelectedMovieorShow: (state)=>{
+            state.selectMovieOrShow={};
+        }
+    },
     extraReducers: (builder) => {
         builder
          .addCase(fetchAsyncMovies.pending, (state)=>{
@@ -111,4 +115,5 @@ export const getAllShows =(state)=> state.movies.shows;
 export const getselectedMovie =(state)=> state.movies.selectMovieOrShow;  
 export const getLoadingStatus =(state)=> state.movies.loading;
 export const getErrorstatus =(state)=> state.movies.error;
+export const {removeSelectedMovieorShow}=movieSlice.actions;
 
